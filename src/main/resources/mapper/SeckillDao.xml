@@ -9,9 +9,9 @@
         UPDATE
         seckill
         SET
-        number =number -1
+        number =number-1
         WHERE seckill_id=#{seckillId}
-        AND start_time <![CDATA[ <= ]]]> #{killTime}
+        AND start_time <![CDATA[ <= ]]> #{killTime}
         AND end_time >= #{killTime}
     </update>
 
@@ -20,5 +20,11 @@
         FROM seckill
         ORDER BY create_time DESC
         limit #{offset},#{limit}
+    </select>
+
+    <select id="queryById" resultType="Seckill" parameterType="int">
+        SELECT seckill_id,name,number,start_time,end_time,create_time
+        FROM seckill
+        WHERE seckill_id=#{seckillId}
     </select>
 </mapper>
