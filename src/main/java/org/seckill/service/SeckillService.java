@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface SeckillService {
     //查询所有秒杀记录
-    List<Seckill> getSckillLidt();
+    List<Seckill> getSckillList();
 
     //查询单个秒杀记录
     Seckill getById(int seckillId);
@@ -19,6 +19,6 @@ public interface SeckillService {
     Exposer exportSeckillUrl(int seckillId);
 
     //执行秒杀操作
-    SeckillExecution executeSeckill(int seckill, long userPhone, String md5)
+    SeckillExecution executeSeckill(int seckillId, int userPhone, String md5)
     throws SeckillExecution,RepeatKillExpection,SeckillCloseExpection;
 }
