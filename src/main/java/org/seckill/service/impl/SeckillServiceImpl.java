@@ -71,7 +71,7 @@ public class SeckillServiceImpl implements SeckillService {
     @Transactional
     public SeckillExecution executeSeckill(int seckillId, int userPhone, String md5) throws SecurityException, RepeatKillExpection, SeckillCloseExpection {
         try {
-            if(md5==null||md5.equals(getMD5(seckillId))){
+            if(md5==null|| !md5.equals(getMD5(seckillId))){
                 throw new SecurityException("seckill data rewrite");
             }
             Date nowTime=new Date();

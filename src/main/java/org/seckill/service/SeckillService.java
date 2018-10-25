@@ -5,6 +5,7 @@ import org.seckill.dto.SeckillExecution;
 import org.seckill.entity.Seckill;
 import org.seckill.exception.RepeatKillExpection;
 import org.seckill.exception.SeckillCloseExpection;
+import org.seckill.exception.SeckillExpection;
 
 import java.util.List;
 
@@ -19,6 +20,5 @@ public interface SeckillService {
     Exposer exportSeckillUrl(int seckillId);
 
     //执行秒杀操作
-    SeckillExecution executeSeckill(int seckillId, int userPhone, String md5)
-    throws SeckillExecution,RepeatKillExpection,SeckillCloseExpection;
+    SeckillExecution executeSeckill(int seckillId, int userPhone, String md5)throws SeckillExpection,RepeatKillExpection,SeckillCloseExpection;
 }
