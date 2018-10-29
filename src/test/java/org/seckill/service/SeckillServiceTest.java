@@ -40,24 +40,24 @@ public class SeckillServiceTest {
 
     @Test
     public void exportSeckillUrl() {
-        int id=1000;
+        int id=1001;
         Exposer exposer=seckillService.exportSeckillUrl(id);
         logger.info("Exposer={}",exposer);
-    // Exposer=Exposer{exposed=true, md5='706cfaaf4c11e78990e0ec32139d49de', seckillId=1000, now=0, start=0, end=0}
+//        Exposer{exposed=true, md5='4de39f35b4916acaf3a73d4ad2b7895d', seckillId=1001, now=0, start=0, end=0}
     }
 
     @Test
     public void executeSeckill() {
-        int id=1000;
-        int phone=123456786;
-        String md5="706cfaaf4c11e78990e0ec32139d49de";
+        int id=1001;
+        int phone=123453786;
+        String md5="4de39f35b4916acaf3a73d4ad2b7895d";
         SeckillExecution seckillExecution=seckillService.executeSeckill(id,phone,md5);
         logger.info("result={}",seckillExecution);
     }
     //集成测试代码完整逻辑，注意可重复执行
     @Test
     public void testSeckillLogic() throws Exception{
-        int id=1000;
+        int id=1001;
         Exposer exposer=seckillService.exportSeckillUrl(id);
         if(exposer.isExposed()){
             logger.info("exposer={}",exposer);

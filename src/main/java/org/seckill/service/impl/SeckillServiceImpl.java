@@ -35,7 +35,7 @@ public class SeckillServiceImpl implements SeckillService {
     private final String slat="dd>{P&^%$#&*(*&^^%^&*(*&^%>";
     @Override
     public List<Seckill> getSckillList() {
-        return seckillDao.queryAll(0,10);
+        return seckillDao.queryAll(0,15);
     }
 
     @Override
@@ -61,7 +61,7 @@ public class SeckillServiceImpl implements SeckillService {
         return new Exposer(true,md5,seckillId);
     }
 
-    private String getMD5(int seckillId){
+    private String getMD5(Integer seckillId){
         String base=seckillId+"/"+slat;
         String md5= DigestUtils.md5DigestAsHex(base.getBytes());
         return md5;

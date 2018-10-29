@@ -51,7 +51,7 @@ public class SeckillController {
     method = RequestMethod.POST,
     produces = {"application/json;charset=UTF-8"})
     @ResponseBody
-    public SeckillResult<Exposer> exposer(Integer seckillId){
+    public SeckillResult<Exposer> exposer(@PathVariable Integer seckillId){
         SeckillResult<Exposer> result;
         try {
             Exposer exposer=seckillService.exportSeckillUrl(seckillId);
@@ -63,7 +63,7 @@ public class SeckillController {
         return result;
     }
 
-    @RequestMapping(value = "/{seckillId}/{md5}/execution}",
+    @RequestMapping(value = "/{seckillId}/{md5}/execution",
                     method = RequestMethod.POST,
                     produces = {"application/json;charset=UTF-8"})
     @ResponseBody
@@ -76,20 +76,22 @@ public class SeckillController {
         SeckillResult<SeckillExecution> result;
         try {
             SeckillExecution execution=seckillService.executeSeckill(seckillId,phone,md5);
+
             return new SeckillResult<SeckillExecution>(true,execution);
         }catch (RepeatKillExpection e){
             SeckillExecution execution=new SeckillExecution(seckillId, SeckillStatEnum.REPEAT_KILL);
-            return new SeckillResult<SeckillExecution>(false,execution);
+            return new SeckillResult<SeckillExecution>(true,execution);
         }catch (SeckillCloseExpection e){
             SeckillExecution execution=new SeckillExecution(seckillId, SeckillStatEnum.END);
-            return new SeckillResult<SeckillExecution>(false,execution);
+            return new SeckillResult<SeckillExecution>(true,execution);
         }catch (Exception e){
             SeckillExecution execution=new SeckillExecution(seckillId, SeckillStatEnum.INNER_ERROR);
-            return new SeckillResult<SeckillExecution>(false,execution);
+            return new SeckillResult<SeckillExecution>(true,execution);
         }
     }
 
     @RequestMapping(value = "time/now",method = RequestMethod.GET)
+    @ResponseBody
     public SeckillResult<Long> time(){
         Date now=new Date();
         return new SeckillResult(true,now.getTime());
